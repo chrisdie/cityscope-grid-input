@@ -1,0 +1,15 @@
+body{overflow:hidden;}
+
+.countries{
+  stroke:gray;
+  stroke-width:0.1px;
+}
+
+.countries:hover{
+  fill: #acacac;
+}
+
+
+.sphere{
+fill:steelblue;
+}
