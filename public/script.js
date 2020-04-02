@@ -1,6 +1,8 @@
 
 var cityioserver = "https://cityscope-io-server.glitch.me/hdm-test"
 
+var data = []
+
 
 $(document).ready(function () {
 
@@ -46,7 +48,7 @@ $(document).ready(function () {
     return data;
   }
 
-  var data = gridData();	
+  data = gridData();	
   // I like to log the data to the console for quick debugging
   //console.log(data);
 
@@ -77,15 +79,18 @@ $(document).ready(function () {
        if ((d.click)%types.length == 1 ) { data[d.idx[0]][d.idx[1]].type = {...types[1]}; }
        if ((d.click)%types.length == 2 ) { data[d.idx[0]][d.idx[1]].type = {...types[2]}; }
        if ((d.click)%types.length == 3 ) { data[d.idx[0]][d.idx[1]].type = {...types[3]}; }
+       
+       console.log(data)
+       sendData(data) 
        redraw()
+       
       });
 
   function redraw(){
     row.selectAll(".square") 
       .data(function(d) { return d; })
       .style("fill", function(d) { return d.type.fill })
-    console.log(data)
-    sendData(data) 
+    
   }
 
   $.postJSON = function(url, data, callback) {
@@ -118,18 +123,46 @@ $(document).ready(function () {
  
   function sendData(data){ 
     
-    data = transformDataForCityIO(data)
-    console.log(data)
+    var cityiodata = transformDataForCityIO(data)
+    console.log("*** sending data",data)
+    $.ajax({
+          'type': 'POST',
+          'url': "/newdata",
+          'crossDomain':true,
+          'contentType': 'application/json',
+          'data': JSON.stringify(data),
+          'dataType': 'json'})
+    
     $.ajax({
           'type': 'POST',
           'url': cityioserver,
           'crossDomain':true,
           'contentType': 'application/json',
-          'data': JSON.stringify(data),
+          'data': JSON.stringify(cityiodata),
           'dataType': 'json'})
 
   }
 
   redraw()
+  
+  
+  const socket = io();
+  socket.on("connect", () => socket.emit("hello", `Hi there! I am ${window.navigator.userAgent}`));
+
+  socket.on("newdatafromserver", newdata => {
+    console.log("***** new data1",newdata)
+    // update data
+    if (newdata) {
+      for (var row = 0; row < 10; row++) {
+        // iterate for cells/columns inside rows
+        for (var column = 0; column < 10; column++) {
+            var typIdx = types.findIndex((typ) => typ.type === newdata[row][column].type.type)
+            data[row][column].type = types[typIdx]
+          }
+        }
+      }
+      redraw()
+      console.log("***** new data1",data)
+    });
   
 })
