@@ -1,0 +1,77 @@
+// copy from WS19 results in  https://cityio.media.mit.edu/api/table/hdmvz
+var _cityioGridTemplate = {
+   "grid": [],
+   "header":{
+      "block":[
+         "type",
+         "rotation"
+      ],
+      "mapping":{
+         "rotation":[
+            "0",
+            "1",
+            "2",
+            "3"
+         ],
+         "type":[
+            "0",
+            "1",
+            "2",
+            "3"
+         ]
+      },
+      "name":"hdmvz",
+      "owner":{
+         "institute":"Hochschule der Medien Stuttgart",
+         "name":"Hochschule der Medien Stuttgart",
+         "title":""
+      },
+      "spatial":{
+         "cellSize":500,
+         "latitude":0,
+         "longitude":0,
+         "ncols":20,
+         "nrows":19,
+         "physical_latitude":0,
+         "physical_longitude":0,
+         "projection":0,
+         "rotation":0
+      }
+   },
+   "meta":{
+      "apiv":"2.1",
+      "hashes":{
+         "grid":"76073b560d0dce246513d4249b100e3cbdbf4194578ccfb2f5505e68cc340236",
+         "header":"95170fa0d86e97d16a1fe215be491075b00a7241aa693ff6c1771de2fe8ff5c7",
+         "objects":"8232ce6ddb36736775bd29f230fb3716d84526709602ef25fda61f2643274078"
+      },
+      "id":"368715b2aa0433b993270e86db35f4f946de50abe3c8912442437e150278bee1",
+      "timestamp":1579776367
+   },
+   "objects":{
+      "cityscopy":{
+         "cell_gap":4,
+         "cityio":true,
+         "gui":true,
+         "interval":250,
+         "makeGrid":false,
+         "mirror_cam":false,
+         "requiredMatchScore":14,
+         "scan":false,
+         "tags":[
+            "1111111111111111",
+            "0000000000000000",
+            "0011001111111111",
+            "1100110000000000",
+            "0000000011111111",
+            "0011001111001100",
+            "1111100110011111",
+            "1001100111111111",
+            "1001100100110011",
+            "1001100111001100",
+            "1001100110011001",
+            "1001100100000000"
+         ]
+      }
+   }
+}
