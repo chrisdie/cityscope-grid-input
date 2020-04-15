@@ -1,5 +1,6 @@
 
-var cityioserver = "https://cityscope-io-server.glitch.me/hdm-test"
+//var cityioserver = "https://cityscope-io-server.glitch.me/hdm-test"
+var cityioserver = "http://localhost:3001/hdm-test"
 
 var data = []
 
